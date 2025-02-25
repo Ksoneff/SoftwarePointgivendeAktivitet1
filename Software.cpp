@@ -19,8 +19,8 @@ public:
         }
     }
 
-    void showTasks() {
-        std::cout << "\nTo-Do List:\n";
+    void showtasks() {
+        std::cout << "\nto-do list Visualization:\n";
         for (size_t i = 0; i < tasks.size(); i++) {
             std::cout << i + 1 << ". [" 
                       << (tasks[i].second ? "X" : " ") << "] " 
