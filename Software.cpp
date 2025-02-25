@@ -19,6 +19,17 @@ public:
         }
     }
 
+    void deleteTask(int index) {
+	    if (index > 0 && index <= tasks.size()) {
+		    tasks.erase(tasks.begin() + index - 1);
+		    std::cout << "Task" << index << " deleted!" << std::endl;
+		}
+	    else {
+		    std::cout << "Invalid task number. " << std::endl;
+		}
+    }
+
+
     void showtasks() {
         std::cout << "\nto-do list Visualization:\n";
         for (size_t i = 0; i < tasks.size(); i++) {
@@ -41,18 +52,24 @@ int main() {
     }
 
     while (true) {
-        todo.showTasks();
-        std::cout << "Enter task number to mark as complete (or 'exit' to finish): ";
+        todo.showtasks();
+        std::cout << "Enter task number to mark as complete, 'del <num>' to delete, (or 'exit' to finish): ";
         std::getline(std::cin, task);
 
         if (task == "exit") break;
+
+	if(task.substr(0,4) == "del ") {
+		int taskNumber = std::stoi(task.substr(4));
+		todo.deleteTask(taskNumber);
+	} else {
         
         int taskNumber = std::stoi(task);
         todo.markComplete(taskNumber);
+      }
     }
 
     std::cout << "\nFinal To-Do List:\n";
-    todo.showTasks();
+    todo.showtasks();
     return 0;
 }
 
